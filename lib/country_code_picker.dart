@@ -154,8 +154,8 @@ class CountryCodePickerState extends State<CountryCodePicker> {
       _widget = FlatButton(
         padding: widget.padding,
         onPressed: widget.enabled ? showCountryCodePickerDialog : null,
-        child: Flex(
-          direction: Axis.horizontal,
+        child: Row(
+          //direction: Axis.horizontal,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (widget.showFlagMain != null
