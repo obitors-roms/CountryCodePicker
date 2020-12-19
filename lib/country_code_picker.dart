@@ -151,10 +151,11 @@ class CountryCodePickerState extends State<CountryCodePicker> {
         child: widget.builder(selectedItem),
       );
     else {
-      _widget = FlatButton(
-        padding: widget.padding,
-        onPressed: widget.enabled ? showCountryCodePickerDialog : null,
-        child: Row(
+      _widget = GestureDetector(
+                  onTap: () {
+                    widget.enabled ? showCountryCodePickerDialog : null;
+                  },
+                   child: Row(
           //direction: Axis.horizontal,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -191,6 +192,11 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                     )),
           ],
         ),
+                  ),
+        // padding: widget.padding,
+        //onPressed: widget.enabled ? showCountryCodePickerDialog : null,
+        
+       
       );
     }
     return _widget;
