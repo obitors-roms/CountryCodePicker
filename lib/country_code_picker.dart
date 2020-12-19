@@ -152,10 +152,10 @@ class CountryCodePickerState extends State<CountryCodePicker> {
       );
     else {
       _widget = GestureDetector(
-                  onTap: () {
-                    widget.enabled ? showCountryCodePickerDialog : null;
-                  },
-                   child: Row(
+        onTap: () {
+          widget.enabled ? showCountryCodePickerDialog : null;
+        },
+        child: Row(
           //direction: Axis.horizontal,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -163,41 +163,39 @@ class CountryCodePickerState extends State<CountryCodePicker> {
                 ? widget.showFlagMain
                 : widget.showFlag)
               Padding(
+                padding: widget.alignLeft
+                    ? const EdgeInsets.only(right: 2.0, left: 2.0)
+                    : const EdgeInsets.only(right: 2.0),
+                child: Image.asset(
+                  selectedItem.flagUri,
+                  package: 'country_code_picker',
+                  width: widget.flagWidth,
+                ),
+              ),
+            if (!widget.hideMainText)
+              Text(
+                widget.showOnlyCountryWhenClosed
+                    ? selectedItem.toCountryStringOnly()
+                    : selectedItem.toString(),
+                style: widget.textStyle ?? Theme.of(context).textTheme.button,
+                overflow: widget.textOverflow,
+              ),
+            if (widget.showDropDownButton)
+              Padding(
                   padding: widget.alignLeft
                       ? const EdgeInsets.only(right: 2.0, left: 2.0)
                       : const EdgeInsets.only(right: 2.0),
-                  child: Image.asset(
-                    selectedItem.flagUri,
-                    package: 'country_code_picker',
-                    width: widget.flagWidth,
-                  ),
-                ),
-            if (!widget.hideMainText)
-              Text(
-                  widget.showOnlyCountryWhenClosed
-                      ? selectedItem.toCountryStringOnly()
-                      : selectedItem.toString(),
-                  style: widget.textStyle ?? Theme.of(context).textTheme.button,
-                  overflow: widget.textOverflow,
-                ),
-            if (widget.showDropDownButton)
-              Padding(
-                    padding: widget.alignLeft
-                        ? const EdgeInsets.only(right: 2.0, left: 2.0)
-                        : const EdgeInsets.only(right: 2.0),
-                    child: Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.grey,
-                      size: widget.flagWidth,
-                    )),
+                  child: Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.grey,
+                    size: widget.flagWidth,
+                  )),
           ],
         ),
-                  ),
-        // padding: widget.padding,
-        //onPressed: widget.enabled ? showCountryCodePickerDialog : null,
-        
-       
       );
+      // padding: widget.padding,
+      //onPressed: widget.enabled ? showCountryCodePickerDialog : null,
+
     }
     return _widget;
   }
